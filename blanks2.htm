@@ -1,0 +1,771 @@
+<html>
+<head>
+<title>index</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><script language="JavaScript" type="text/javascript">
+<!-- 
+function fixUglyIE()
+{
+for (a in document.links) document.links[a].onfocus = document.links[a].blur;
+}
+if (document.all)
+{
+document.onmousedown = fixUglyIE;
+}
+// -->
+</script>
+<style type="text/css">  
+#divUpControl{position:absolute; width:300; left:300; top:60; z-index:1; text-align: right} 
+#divDownControl{position:absolute; width:300; left:300; top:350; z-index:1; text-align: right} 
+#divContainer{position:absolute; width:300; height:270; overflow:hidden; top:80; left:300; clip:rect(0,300,270,0); visibility:hidden} 
+#divContent{position:absolute; top:0; left:0} 
+</style>
+<script language="JavaScript">// begin absolutely positioned scrollable area object scripts 
+// Extension developed by David G. Miles 
+// Original Scrollable Area code developed by Thomas Brattli 
+function verifyCompatibleBrowser(){ 
+    this.ver=navigator.appVersion 
+    this.dom=document.getElementById?1:0 
+    this.ie5=(this.ver.indexOf("MSIE 5")>-1 && this.dom)?1:0; 
+    this.ie4=(document.all && !this.dom)?1:0; 
+    this.ns5=(this.dom && parseInt(this.ver) >= 5) ?1:0; 
+ 
+    this.ns4=(document.layers && !this.dom)?1:0; 
+    this.bw=(this.ie5 || this.ie4 || this.ns4 || this.ns5) 
+    return this 
+} 
+bw=new verifyCompatibleBrowser() 
+ 
+ 
+var speed=50 
+ 
+var loop, timer 
+ 
+function ConstructObject(obj,nest){ 
+    nest=(!nest) ? '':'document.'+nest+'.' 
+    this.el=bw.dom?document.getElementById(obj):bw.ie4?document.all[obj]:bw.ns4?eval(nest+'document.'+obj):0; 
+    this.css=bw.dom?document.getElementById(obj).style:bw.ie4?document.all[obj].style:bw.ns4?eval(nest+'document.'+obj):0; 
+    this.scrollHeight=bw.ns4?this.css.document.height:this.el.offsetHeight 
+    this.clipHeight=bw.ns4?this.css.clip.height:this.el.offsetHeight 
+    this.up=MoveAreaUp;this.down=MoveAreaDown; 
+    this.MoveArea=MoveArea; this.x; this.y; 
+    this.obj = obj + "Object" 
+    eval(this.obj + "=this") 
+    return this 
+} 
+function MoveArea(x,y){ 
+    this.x=x;this.y=y 
+    this.css.left=this.x 
+    this.css.top=this.y 
+} 
+ 
+function MoveAreaDown(move){ 
+	if(this.y>-this.scrollHeight+objContainer.clipHeight){ 
+    this.MoveArea(0,this.y-move) 
+    if(loop) setTimeout(this.obj+".down("+move+")",speed) 
+	} 
+} 
+function MoveAreaUp(move){ 
+	if(this.y<0){ 
+    this.MoveArea(0,this.y-move) 
+    if(loop) setTimeout(this.obj+".up("+move+")",speed) 
+	} 
+} 
+ 
+function PerformScroll(speed){ 
+	if(initialised){ 
+		loop=true; 
+		if(speed>0) objScroller.down(speed) 
+		else objScroller.up(speed) 
+	} 
+} 
+ 
+function CeaseScroll(){ 
+    loop=false 
+    if(timer) clearTimeout(timer) 
+} 
+var initialised; 
+function InitialiseScrollableArea(){ 
+    objContainer=new ConstructObject('divContainer') 
+    objScroller=new ConstructObject('divContent','divContainer') 
+    objScroller.MoveArea(0,0) 
+    objContainer.css.visibility='visible' 
+    initialised=true; 
+} 
+// end absolutely positioned scrollable area object scripts 
+
+</script>
+<script language="JavaScript">
+<!--
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+// -->
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+</head>
+
+<body bgcolor="#666666" text="#000000" onLoad="InitialiseScrollableArea();MM_preloadImages('pics/BLANKSgr.gif','pics/CANE%20RODSgr.gif','pics/ROD%20BUILDINGgr.gif','pics/HOOKSgr.gif','pics/FLIESgr.gif','pics/FLY%20TYINGgr.gif','pics/FLY%20LINESgr.gif','pics/CLOTHESgr.gif','pics/ACCESSORIESgr.gif','pics/SUNDRIESgr.gif','pics/HISTORYgr.gif','pics/TERMS%20OF%20SALEgr.gif','pics/CONSULTINGgr.gif','pics/OPINIONSgr.gif')" marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+<img src="pics/background2.gif" width="780" height="406" border="0" usemap="#Map"> 
+<div id="Layer2" style="position:absolute; width:113px; height:291px; z-index:3; left: 654px; top: 63px"> 
+  <table width="105" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="105"><a href="blanks2.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image5','','pics/BLANKSgr.gif',1)"><img name="Image5" border="0" src="pics/BLANKSor.gif" width="105" height="24"></a></td>
+    </tr>
+    <tr>
+      <td width="105"><a href="canerods2.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image6','','pics/CANE%20RODSgr.gif',1)"><img name="Image6" border="0" src="pics/CANE%20RODSor.gif" width="105" height="24"></a></td>
+    </tr>
+    <tr>
+      <td width="105"><a href="rodbuilding2.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image7','','pics/ROD%20BUILDINGgr.gif',1)"><img name="Image7" border="0" src="pics/ROD%20BUILDINGor.gif" width="105" height="24"></a></td>
+    </tr>
+    <tr>
+      <td width="105"><a href="hooks2.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image8','','pics/HOOKSgr.gif',1)"><img name="Image8" border="0" src="pics/HOOKSor.gif" width="105" height="24"></a></td>
+    </tr>
+    <tr>
+      <td width="105"><a href="flies2.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image9','','pics/FLIESgr.gif',1)"><img name="Image9" border="0" src="pics/FLIESor.gif" width="105" height="24"></a></td>
+    </tr>
+    <tr>
+      <td width="105"><a href="flytying2.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image10','','pics/FLY%20TYINGgr.gif',1)"><img name="Image10" border="0" src="pics/FLY%20TYINGor.gif" width="105" height="24"></a></td>
+    </tr>
+    <tr>
+      <td width="105"><a href="flylines2.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image11','','pics/FLY%20LINESgr.gif',1)"><img name="Image11" border="0" src="pics/FLY%20LINESor.gif" width="105" height="24"></a></td>
+    </tr>
+    <tr>
+      <td width="105"><a href="clothes2.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image12','','pics/CLOTHESgr.gif',1)"><img name="Image12" border="0" src="pics/CLOTHESor.gif" width="105" height="24"></a></td>
+    </tr>
+    <tr>
+      <td width="105"><a href="accessories2.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image13','','pics/ACCESSORIESgr.gif',1)"><img name="Image13" border="0" src="pics/ACCESSORIESor.gif" width="105" height="24"></a></td>
+    </tr>
+    <tr>
+      <td width="105"><a href="sundries2.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image14','','pics/SUNDRIESgr.gif',1)"><img name="Image14" border="0" src="pics/SUNDRIESor.gif" width="105" height="24"></a></td>
+    </tr>
+  </table>
+</div> 
+<map name="Map"> 
+  <area shape="rect" coords="637,378,743,397" href="mailto:rc@chello.se">
+</map>
+<!-- begin absolutely positioned scrollable area object-->
+<div id="divUpControl" style="left: 613px; top: 60px; width: 27px; height: 20px"> 
+  <a href="javascript:;" onMouseOver="PerformScroll(-7)" onMouseOut="CeaseScroll()"><img src="pics/uparrow.gif" border="0" align="left"></a> 
+</div>
+<div id="divDownControl" style="left: 613px; width: 27px; height: 20px; top: 313px"> 
+  <a href="javascript:;" onMouseOver="PerformScroll(7)" onMouseOut="CeaseScroll()"><img src="pics/downarrow.gif" width="21" height="20" border="0" align="left"></a> 
+</div>
+<div id="divContainer" style="left: 315px; top: 61px; width: 300px; height: 265px; visibility: visible"> 
+  <div id="divContent"> <b><font face="Arial, Helvetica, sans-serif" size="2"><br>
+    </font></b> 
+    <table width="100%" border="1" bordercolor="#006600" bgcolor="#FFFFFF">
+      <tr bordercolor="#666666" bgcolor="#006600"> 
+        <td colspan="5"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2"><b><font color="#FFFFFF">The 
+            Toy </font></b></font></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#FFFFFF"> 
+        <td colspan="5"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b><font color="#333333">A 
+            dream for creek fishing.</font></b></font></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#999900"> 
+        <td width="23%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Length</font></b></div>
+        </td>
+        <td width="14%"><b><font face="Arial, Helvetica, sans-serif" size="2">Weight</font></b></td>
+        <td width="29%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Line</font></b></div>
+        </td>
+        <td width="12%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">PCS</font></b></div>
+        </td>
+        <td width="22%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Price</font></b></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#999900"> 
+        <td width="23%"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">RCTS 
+            7'</font></div>
+        </td>
+        <td width="14%"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">23g</font></div>
+        </td>
+        <td width="29%"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">#2-4 
+            </font></div>
+        </td>
+        <td width="12%"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">4</font></div>
+        </td>
+        <td width="22%"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">1041:-</font></div>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table width="100%" border="1" bordercolor="#006600" bgcolor="#FFFFFF">
+      <tr bordercolor="#666666" bgcolor="#006600"> 
+        <td colspan="5"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2"><b><font color="#FFFFFF">The 
+            Mountain</font></b></font></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#FFFFFF"> 
+        <td colspan="5"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>When 
+            it's windy out there...</b></font></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#999900"> 
+        <td width="23%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Length</font></b></div>
+        </td>
+        <td width="14%"><b><font face="Arial, Helvetica, sans-serif" size="2">Weight</font></b></td>
+        <td width="29%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Line</font></b></div>
+        </td>
+        <td width="12%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">PCS</font></b></div>
+        </td>
+        <td width="22%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Price</font></b></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#999900"> 
+        <td width="23%" height="19"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">RCTS 
+            7'6&quot;</font></div>
+        </td>
+        <td width="14%" height="19"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">33g</font></div>
+        </td>
+        <td width="29%" height="19"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">#4-7</font></div>
+        </td>
+        <td width="12%" height="19"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">3</font></div>
+        </td>
+        <td width="22%" height="19"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">1087:-</font></div>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table width="100%" border="1" bordercolor="#006600" bgcolor="#FFFFFF">
+      <tr bordercolor="#666666" bgcolor="#006600"> 
+        <td colspan="5"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2"><b><font color="#FFFFFF">The 
+            Super Traveller </font></b></font></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#FFFFFF"> 
+        <td colspan="5"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>Desired 
+            by car drivers and cyclists</b></font></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#999900"> 
+        <td width="23%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Length</font></b></div>
+        </td>
+        <td width="14%"><b><font face="Arial, Helvetica, sans-serif" size="2">Weight</font></b></td>
+        <td width="29%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Line</font></b></div>
+        </td>
+        <td width="12%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">PCS</font></b></div>
+        </td>
+        <td width="22%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Price</font></b></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#999900"> 
+        <td width="23%" height="19"> 
+          <div align="center"><font size="2"><font face="Arial, Helvetica, sans-serif">RCTS 
+            8'</font></font></div>
+        </td>
+        <td width="14%" height="19"> 
+          <div align="center"><font size="2"><font face="Arial, Helvetica, sans-serif">46g</font></font></div>
+        </td>
+        <td width="29%" height="19"> 
+          <div align="center"><font size="2"><font face="Arial, Helvetica, sans-serif">#3-7</font></font></div>
+        </td>
+        <td width="12%" height="19"> 
+          <div align="center"><font size="2"><font face="Arial, Helvetica, sans-serif">6</font></font></div>
+        </td>
+        <td width="22%" height="19"> 
+          <div align="center"><font size="2"><font face="Arial, Helvetica, sans-serif">1176:-</font></font></div>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table width="100%" border="1" bordercolor="#006600" bgcolor="#FFFFFF">
+      <tr bordercolor="#666666" bgcolor="#006600"> 
+        <td colspan="5"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2"><b><font color="#FFFFFF">The 
+            Pike</font></b></font></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#FFFFFF"> 
+        <td colspan="5"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>Designed 
+            for the pike and steelhead</b></font></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#999900"> 
+        <td width="23%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Length</font></b></div>
+        </td>
+        <td width="14%"><b><font face="Arial, Helvetica, sans-serif" size="2">Weight</font></b></td>
+        <td width="29%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Line</font></b></div>
+        </td>
+        <td width="12%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">PCS</font></b></div>
+        </td>
+        <td width="22%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Price</font></b></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#999900"> 
+        <td width="23%" height="19"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">RCTS 
+            8' </font></div>
+        </td>
+        <td width="14%" height="19"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">47g</font></div>
+        </td>
+        <td width="29%" height="19"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">#7-9</font></div>
+        </td>
+        <td width="12%" height="19"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">4</font></div>
+        </td>
+        <td width="22%" height="19"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">1182:-</font></div>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table width="100%" border="1" bordercolor="#006600" bgcolor="#FFFFFF">
+      <tr bordercolor="#666666" bgcolor="#006600"> 
+        <td colspan="5"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2"><b><font color="#FFFFFF">The 
+            All-rounder</font></b></font></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#FFFFFF"> 
+        <td colspan="5"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>A 
+            beginners blank</b></font></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#999900"> 
+        <td width="23%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Length</font></b></div>
+        </td>
+        <td width="14%"><b><font face="Arial, Helvetica, sans-serif" size="2">Weight</font></b></td>
+        <td width="29%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Line</font></b></div>
+        </td>
+        <td width="12%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">PCS</font></b></div>
+        </td>
+        <td width="22%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Price</font></b></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#999900"> 
+        <td width="23%" height="19"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">RCTS 
+            9' </font></div>
+        </td>
+        <td width="14%" height="19"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">55g</font></div>
+        </td>
+        <td width="29%" height="19"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">#4-7</font></div>
+        </td>
+        <td width="12%" height="19"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">4</font></div>
+        </td>
+        <td width="22%" height="19"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">1315:-</font></div>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table width="100%" border="1" bordercolor="#006600" bgcolor="#FFFFFF">
+      <tr bordercolor="#666666" bgcolor="#006600"> 
+        <td colspan="5"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2"><b><font color="#FFFFFF">The 
+            Professional</font> </b></font></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#FFFFFF"> 
+        <td colspan="5"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>Weapon 
+            for the casting pro</b></font></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#999900"> 
+        <td width="23%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Length</font></b></div>
+        </td>
+        <td width="14%"><b><font face="Arial, Helvetica, sans-serif" size="2">Weight</font></b></td>
+        <td width="29%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Line</font></b></div>
+        </td>
+        <td width="12%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">PCS</font></b></div>
+        </td>
+        <td width="22%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Price</font></b></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#999900"> 
+        <td width="23%" height="19"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">RCTS 
+            10' </font></div>
+        </td>
+        <td width="14%" height="19"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">77g</font></div>
+        </td>
+        <td width="29%" height="19"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">#4-10</font></div>
+        </td>
+        <td width="12%" height="19"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">5</font></div>
+        </td>
+        <td width="22%" height="19"> 
+          <div align="center"><font size="2" face="Arial, Helvetica, sans-serif">1461:-</font></div>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table width="100%" border="1" bordercolor="#006600" bgcolor="#FFFFFF">
+      <tr bordercolor="#666666" bgcolor="#006600"> 
+        <td colspan="5"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2" color="#FFFFFF"><b>The 
+            Woman</b></font></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#FFFFFF"> 
+        <td colspan="5"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>Two 
+            handed for women, one for men</b></font></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#999900"> 
+        <td width="26%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Length</font></b></div>
+        </td>
+        <td width="20%"><b><font face="Arial, Helvetica, sans-serif" size="2">Weight</font></b></td>
+        <td width="22%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Line</font></b></div>
+        </td>
+        <td width="11%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">PCS</font></b></div>
+        </td>
+        <td width="21%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Price</font></b></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#999900"> 
+        <td width="26%" height="19"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">RCTS 
+            11'6&quot; </font></div>
+        </td>
+        <td width="20%" height="19"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">111g</font></div>
+        </td>
+        <td width="22%" height="19"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">#6-10</font></div>
+        </td>
+        <td width="11%" height="19"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">5</font></div>
+        </td>
+        <td width="21%" height="19"> 
+          <div align="center"><font size="2" face="Arial, Helvetica, sans-serif">1582:-</font></div>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table width="100%" border="1" bordercolor="#006600" bgcolor="#FFFFFF">
+      <tr bordercolor="#666666" bgcolor="#006600"> 
+        <td colspan="5"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2" color="#FFFFFF"><b>The 
+            Sea Trout</b></font></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#FFFFFF"> 
+        <td colspan="5"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>For 
+            big fish in small rivers</b></font></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#999900"> 
+        <td width="26%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Length</font></b></div>
+        </td>
+        <td width="20%"><b><font face="Arial, Helvetica, sans-serif" size="2">Weight</font></b></td>
+        <td width="22%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Line</font></b></div>
+        </td>
+        <td width="11%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">PCS</font></b></div>
+        </td>
+        <td width="21%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Price</font></b></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#999900"> 
+        <td width="26%" height="21"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">RCTS 
+            12'9&quot; </font></div>
+        </td>
+        <td width="20%" height="21"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">128g</font></div>
+        </td>
+        <td width="22%" height="21"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">#8-11</font></div>
+        </td>
+        <td width="11%" height="21"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">4</font></div>
+        </td>
+        <td width="21%" height="21"> 
+          <div align="center"><font size="2" face="Arial, Helvetica, sans-serif">1810:-</font></div>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table width="100%" border="1" bordercolor="#006600" bgcolor="#FFFFFF">
+      <tr bordercolor="#666666" bgcolor="#006600"> 
+        <td colspan="5"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2" color="#FFFFFF"><b>The 
+            Salmon</b></font></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#FFFFFF"> 
+        <td colspan="5"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>Created 
+            to tame the fighting salmon</b></font></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#999900"> 
+        <td width="26%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Length</font></b></div>
+        </td>
+        <td width="20%"><b><font face="Arial, Helvetica, sans-serif" size="2">Weight</font></b></td>
+        <td width="22%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Line</font></b></div>
+        </td>
+        <td width="11%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">PCS</font></b></div>
+        </td>
+        <td width="21%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Price</font></b></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#999900"> 
+        <td width="26%" height="22"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">RCTS 
+            15'9&quot; </font></div>
+        </td>
+        <td width="20%" height="22"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">184g</font></div>
+        </td>
+        <td width="22%" height="22"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">#10-12</font></div>
+        </td>
+        <td width="11%" height="22"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">4</font></div>
+        </td>
+        <td width="21%" height="22"> 
+          <div align="center"><font size="2" face="Arial, Helvetica, sans-serif">2118:-</font></div>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table width="100%" border="1" bordercolor="#006600" bgcolor="#FFFFFF" height="130">
+      <tr bordercolor="#666666" bgcolor="#006600"> 
+        <td colspan="5"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2" color="#FFFFFF"><b>The 
+            Perfection (Plus)</b></font></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#FFFFFF"> 
+        <td colspan="5"> 
+          <div align="center"><font color="#000000" face="Arial, Helvetica, sans-serif" size="2"><b>A 
+            combination for almost any fishing situation</b></font></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#999900"> 
+        <td width="23%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Length</font></b></div>
+        </td>
+        <td width="17%"><b><font face="Arial, Helvetica, sans-serif" size="2">Weight</font></b></td>
+        <td width="17%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Line</font></b></div>
+        </td>
+        <td width="13%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">PCS</font></b></div>
+        </td>
+        <td width="30%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Price</font></b></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#999900"> 
+        <td width="23%" height="22"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">RCTS 
+            10' (7'6&quot;)</font></div>
+        </td>
+        <td width="17%" height="22"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">64g<br>
+            (23g) </font></div>
+        </td>
+        <td width="17%" height="22"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">#4-10<br>
+            (#5-8)</font></div>
+        </td>
+        <td width="13%" height="22"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">4+1</font></div>
+        </td>
+        <td width="30%" height="22"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">1449:- 
+            <br>
+            (1449+363)<br>
+            =1812:-</font></div>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table width="100%" border="1" bordercolor="#006600" bgcolor="#FFFFFF">
+      <tr bordercolor="#666666" bgcolor="#006600"> 
+        <td colspan="5"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2" color="#FFFFFF"><b>The 
+            Force</b></font></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#FFFFFF"> 
+        <td colspan="5"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>The 
+            spinning/surf casting blank</b></font></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#999900"> 
+        <td width="26%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Length</font></b></div>
+        </td>
+        <td width="20%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Weight</font></b></div>
+        </td>
+        <td width="22%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Line</font></b></div>
+        </td>
+        <td width="11%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">PCS</font></b></div>
+        </td>
+        <td width="21%"> 
+          <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="2">Price</font></b></div>
+        </td>
+      </tr>
+      <tr bordercolor="#666666" bgcolor="#999900"> 
+        <td width="26%" height="22"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">RCTS 
+            13'</font></div>
+        </td>
+        <td width="20%" height="22"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">178g</font></div>
+        </td>
+        <td width="22%" height="22"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">#25-125g</font></div>
+        </td>
+        <td width="11%" height="22"> 
+          <div align="center"><font face="Arial, Helvetica, sans-serif" size="2">3</font></div>
+        </td>
+        <td width="21%" height="22"> 
+          <div align="center"><font size="2" face="Arial, Helvetica, sans-serif">1927:-</font></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<!-- end absolutely positioned scrollable area object -->
+<div id="Layer3" style="position:absolute; width:367px; height:21px; z-index:4; left: 20px; top: 349px"> 
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="21%"><a href="history.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image15','','pics/HISTORYgr.gif',1)"><img name="Image15" border="0" src="pics/HISTORYor.gif" width="105" height="24"></a></td>
+      <td width="27%"><a href="termsofsale2.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image16','','pics/TERMS%20OF%20SALEgr.gif',1)"><img name="Image16" border="0" src="pics/TERMS%20OF%20SALEor.gif" width="105" height="24"></a></td>
+      <td width="23%"><a href="consulting2.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image17','','pics/CONSULTINGgr.gif',1)"><img name="Image17" border="0" src="pics/CONSULTINGor.gif" width="105" height="24"></a></td>
+      <td width="29%"><a href="opinions2.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image18','','pics/OPINIONSgr.gif',1)"><img name="Image18" border="0" src="pics/OPINIONSor.gif" width="105" height="24"></a></td>
+    </tr>
+  </table>
+</div>
+<div id="Layer1" style="position:absolute; width:284px; height:273px; z-index:2; left: 15px; top: 57px">
+  <div align="center">
+    <table width="100%" border="0">
+      <tr> 
+        <td> 
+          <div align="left"><b><font face="Arial, Helvetica, sans-serif" size="2">The 
+            ultimate in the art of rod blank design.</font></b></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div align="center"> 
+    <div align="left"><font face="Arial, Helvetica, sans-serif" size="2"><br>
+      -When a rod is assembled the distance between &nbsp;the edge of the female 
+      ferrule and the edge of &nbsp;the&nbsp;male spigot protruding from the blank 
+      is &nbsp;exactly &nbsp;5 mm.<br>
+      <br>
+      -The last spigot is solid on all models up to and &nbsp;including 11'6&quot;. 
+      <br>
+      <br>
+      -The top of each blank is shorter than the&nbsp;other parts to get same 
+      length when the top eye&nbsp;is on.<br>
+      <br>
+      - All female ferrules are&nbsp;reinforced to reduce the risk of damage while 
+      roll&nbsp;casting. <br>
+      <br>
+      (Please note, all prices in Swedish kronor SEK)</font></div>
+  </div>
+  </div>
+</body>
+</html>
